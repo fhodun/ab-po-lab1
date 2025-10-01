@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="lab1.MainPage">
+    <ContentPage.Resources>
+        <Style x:Key="OperationButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="60" />
+            <Setter Property="WidthRequest" Value="80" />
+            <Setter Property="HeightRequest" Value="80" />
+            <Setter Property="CornerRadius" Value="40" />
+        </Style>
+    </ContentPage.Resources>
+    <ScrollView>
+        <Grid Padding="30" RowSpacing="25" HorizontalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Entry x:Name="InputEntry" Grid.Row="0" FontSize="60" Height="80" Keyboard="{x:Static Keyboard.Numeric}"
+                   TextChanged="InputEntry_OnTextChanged"
+                   ReturnCommand="CalculateBtn_OnClicked"
+                   HorizontalOptions="Fill" />
+            <HorizontalStackLayout
+                Grid.Row="1"
+                Spacing="25"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Height="200">
+                <Button
+                    x:Name="DivideBtn"
+                    Text="÷"
+                    Style="{StaticResource OperationButtonStyle}"
+                    SemanticProperties.Hint="Podziel"
+                    Clicked="DivideBtn_OnClicked" />
+                <Button
+                    x:Name="MultiplyBtn"
+                    Text="×"
+                    Style="{StaticResource OperationButtonStyle}"
+                    SemanticProperties.Hint="Pomnóż"
+                    Clicked="MultiplyBtn_OnClicked" />
+                <Button
+                    x:Name="SubtractBtn"
+                    Text="−"
+                    Style="{StaticResource OperationButtonStyle}"
+                    SemanticProperties.Hint="Odejmij"
+                    Clicked="SubtractBtn_OnClicked" />
+                <Button
+                    x:Name="AddBtn"
+                    Text="+"
+                    Style="{StaticResource OperationButtonStyle}"
+                    SemanticProperties.Hint="Dodaj"
+                    Clicked="AddBtn_OnClicked" />
+                <Button
+                    x:Name="CalculateBtn"
+                    Text="="
+                    Style="{StaticResource OperationButtonStyle}"
+                    BackgroundColor="PaleVioletRed"
+                    SemanticProperties.Hint="Oblicz wynik"
+                    Clicked="CalculateBtn_OnClicked" />
+                <Button
+                    x:Name="ClearBtn"
+                    Text="AC"
+                    FontSize="35"
+                    Style="{StaticResource OperationButtonStyle}"
+                    BackgroundColor="PaleVioletRed"
+                    SemanticProperties.Hint="Wyczyść"
+                    Clicked="ClearBtn_OnClicked" />
+            </HorizontalStackLayout>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>
