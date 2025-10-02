@@ -20,12 +20,27 @@
         </Style>
     </ContentPage.Resources>
     <ScrollView>
-        <Grid Padding="30" RowSpacing="25" HorizontalOptions="Center">
+        <Grid
+            Padding="30"
+            RowSpacing="25"
+            ColumnSpacing="25"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <HorizontalStackLayout Grid.Row="0" Spacing="20" HorizontalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <HorizontalStackLayout
+                Grid.Row="0"
+                Grid.ColumnSpan="3"
+                Spacing="20"
+                HorizontalOptions="Center">
                 <Entry x:Name="FirstEntry"
                        TextChanged="InputEntry_OnTextChanged"
                        toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference SecondEntry}"
@@ -37,74 +52,58 @@
                        Style="{StaticResource EntryStyle}" />
                 <Label x:Name="ResultLabel" Text="" FontSize="60" VerticalTextAlignment="Center" />
             </HorizontalStackLayout>
-            <Grid
+            <Button
                 Grid.Row="1"
-                RowSpacing="25"
-                ColumnSpacing="25"
-                VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Button
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    x:Name="DivideBtn"
-                    Text="÷"
-                    Clicked="DivideBtn_OnClicked"
-                    SemanticProperties.Hint="Podziel"
-                    Style="{StaticResource OperationButtonStyle}" />
-                <Button
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    x:Name="MultiplyBtn"
-                    Text="×"
-                    Clicked="MultiplyBtn_OnClicked"
-                    SemanticProperties.Hint="Pomnóż"
-                    Style="{StaticResource OperationButtonStyle}" />
-                <Button
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    x:Name="SubtractBtn"
-                    Text="−"
-                    Clicked="SubtractBtn_OnClicked"
-                    SemanticProperties.Hint="Odejmij"
-                    Style="{StaticResource OperationButtonStyle}" />
-                <Button
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    x:Name="AddBtn"
-                    Text="+"
-                    Clicked="AddBtn_OnClicked"
-                    SemanticProperties.Hint="Dodaj"
-                    Style="{StaticResource OperationButtonStyle}" />
-                <Button
-                    Grid.Row="0"
-                    Grid.Column="2"
-                    x:Name="CalculateBtn"
-                    Text="="
-                    BackgroundColor="PaleVioletRed"
-                    Clicked="CalculateBtn_OnClicked"
-                    SemanticProperties.Hint="Oblicz"
-                    Style="{StaticResource OperationButtonStyle}" />
-                <Button
-                    Grid.Row="1"
-                    Grid.Column="2"
-                    x:Name="ClearBtn"
-                    Text="AC"
-                    FontSize="35"
-                    BackgroundColor="PaleVioletRed"
-                    Clicked="ClearBtn_OnClicked"
-                    SemanticProperties.Hint="Wyczyść"
-                    Style="{StaticResource OperationButtonStyle}" />
-                </Grid>
-            </Grid>
+                Grid.Column="0"
+                x:Name="DivideBtn"
+                Text="÷"
+                Clicked="DivideBtn_OnClicked"
+                SemanticProperties.Hint="Podziel"
+                Style="{StaticResource OperationButtonStyle}" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="0"
+                x:Name="MultiplyBtn"
+                Text="×"
+                Clicked="MultiplyBtn_OnClicked"
+                SemanticProperties.Hint="Pomnóż"
+                Style="{StaticResource OperationButtonStyle}" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                x:Name="SubtractBtn"
+                Text="−"
+                Clicked="SubtractBtn_OnClicked"
+                SemanticProperties.Hint="Odejmij"
+                Style="{StaticResource OperationButtonStyle}" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="1"
+                x:Name="AddBtn"
+                Text="+"
+                Clicked="AddBtn_OnClicked"
+                SemanticProperties.Hint="Dodaj"
+                Style="{StaticResource OperationButtonStyle}" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="2"
+                x:Name="CalculateBtn"
+                Text="="
+                BackgroundColor="PaleVioletRed"
+                Clicked="CalculateBtn_OnClicked"
+                SemanticProperties.Hint="Oblicz"
+                Style="{StaticResource OperationButtonStyle}" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="2"
+                x:Name="ClearBtn"
+                Text="AC"
+                FontSize="35"
+                BackgroundColor="PaleVioletRed"
+                Clicked="ClearBtn_OnClicked"
+                SemanticProperties.Hint="Wyczyść"
+                Style="{StaticResource OperationButtonStyle}" />
+        </Grid>
     </ScrollView>
 
 </ContentPage>
