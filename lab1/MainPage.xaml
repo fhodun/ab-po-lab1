@@ -2,6 +2,7 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="lab1.MainPage">
     <ContentPage.Resources>
         <Style x:Key="OperationButtonStyle" TargetType="Button">
@@ -10,6 +11,13 @@
             <Setter Property="HeightRequest" Value="80" />
             <Setter Property="CornerRadius" Value="40" />
         </Style>
+        <Style x:Key="EntryStyle" TargetType="Entry">
+            <Setter Property="FontSize" Value="60" />
+            <Setter Property="HeightRequest" Value="80" />
+            <Setter Property="WidthRequest" Value="150" />
+            <Setter Property="HorizontalOptions" Value="Fill" />
+            <Setter Property="Keyboard" Value="{x:Static Keyboard.Numeric}" />
+        </Style>
     </ContentPage.Resources>
     <ScrollView>
         <Grid Padding="30" RowSpacing="25" HorizontalOptions="Center">
@@ -17,57 +25,86 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Entry x:Name="InputEntry" Grid.Row="0" FontSize="60" Height="80" Keyboard="{x:Static Keyboard.Numeric}"
-                   TextChanged="InputEntry_OnTextChanged"
-                   ReturnCommand="CalculateBtn_OnClicked"
-                   HorizontalOptions="Fill" />
-            <HorizontalStackLayout
+            <HorizontalStackLayout Grid.Row="0" Spacing="20" HorizontalOptions="Center">
+                <Entry x:Name="FirstEntry"
+                       TextChanged="InputEntry_OnTextChanged"
+                       toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference SecondEntry}"
+                       Style="{StaticResource EntryStyle}" />
+                <Label x:Name="OperationLabel" FontSize="60" VerticalTextAlignment="Center" />
+                <Entry x:Name="SecondEntry"
+                       TextChanged="InputEntry_OnTextChanged"
+                       toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference CalculateBtn}"
+                       Style="{StaticResource EntryStyle}" />
+                <Label x:Name="ResultLabel" Text="" FontSize="60" VerticalTextAlignment="Center" />
+            </HorizontalStackLayout>
+            <Grid
                 Grid.Row="1"
-                Spacing="25"
+                RowSpacing="25"
+                ColumnSpacing="25"
                 VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Height="200">
+                HorizontalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
                 <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
                     x:Name="DivideBtn"
                     Text="÷"
-                    Style="{StaticResource OperationButtonStyle}"
+                    Clicked="DivideBtn_OnClicked"
                     SemanticProperties.Hint="Podziel"
-                    Clicked="DivideBtn_OnClicked" />
+                    Style="{StaticResource OperationButtonStyle}" />
                 <Button
+                    Grid.Row="1"
+                    Grid.Column="0"
                     x:Name="MultiplyBtn"
                     Text="×"
-                    Style="{StaticResource OperationButtonStyle}"
+                    Clicked="MultiplyBtn_OnClicked"
                     SemanticProperties.Hint="Pomnóż"
-                    Clicked="MultiplyBtn_OnClicked" />
+                    Style="{StaticResource OperationButtonStyle}" />
                 <Button
+                    Grid.Row="0"
+                    Grid.Column="1"
                     x:Name="SubtractBtn"
                     Text="−"
-                    Style="{StaticResource OperationButtonStyle}"
+                    Clicked="SubtractBtn_OnClicked"
                     SemanticProperties.Hint="Odejmij"
-                    Clicked="SubtractBtn_OnClicked" />
+                    Style="{StaticResource OperationButtonStyle}" />
                 <Button
+                    Grid.Row="1"
+                    Grid.Column="1"
                     x:Name="AddBtn"
                     Text="+"
-                    Style="{StaticResource OperationButtonStyle}"
+                    Clicked="AddBtn_OnClicked"
                     SemanticProperties.Hint="Dodaj"
-                    Clicked="AddBtn_OnClicked" />
+                    Style="{StaticResource OperationButtonStyle}" />
                 <Button
+                    Grid.Row="0"
+                    Grid.Column="2"
                     x:Name="CalculateBtn"
                     Text="="
-                    Style="{StaticResource OperationButtonStyle}"
                     BackgroundColor="PaleVioletRed"
-                    SemanticProperties.Hint="Oblicz wynik"
-                    Clicked="CalculateBtn_OnClicked" />
+                    Clicked="CalculateBtn_OnClicked"
+                    SemanticProperties.Hint="Oblicz"
+                    Style="{StaticResource OperationButtonStyle}" />
                 <Button
+                    Grid.Row="1"
+                    Grid.Column="2"
                     x:Name="ClearBtn"
                     Text="AC"
                     FontSize="35"
-                    Style="{StaticResource OperationButtonStyle}"
                     BackgroundColor="PaleVioletRed"
+                    Clicked="ClearBtn_OnClicked"
                     SemanticProperties.Hint="Wyczyść"
-                    Clicked="ClearBtn_OnClicked" />
-            </HorizontalStackLayout>
-        </Grid>
+                    Style="{StaticResource OperationButtonStyle}" />
+                </Grid>
+            </Grid>
     </ScrollView>
 
 </ContentPage>
