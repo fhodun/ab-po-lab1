@@ -1,7 +1,5 @@
 ﻿using CommunityToolkit.Maui;
-using CoreGraphics;
 using Microsoft.Extensions.Logging;
-using Microsoft.Maui.Handlers;
 
 namespace lab1;
 
