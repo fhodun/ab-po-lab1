@@ -7,10 +7,10 @@
              Title="Lab1 - Kalkulator">
     <ContentPage.Resources>
         <Style x:Key="OperationButtonStyle" TargetType="Button">
-            <Setter Property="FontSize" Value="80" />
-            <Setter Property="WidthRequest" Value="100" />
-            <Setter Property="HeightRequest" Value="100" />
-            <Setter Property="CornerRadius" Value="50" />
+            <Setter Property="FontSize" Value="100" />
+            <Setter Property="WidthRequest" Value="120" />
+            <Setter Property="HeightRequest" Value="120" />
+            <Setter Property="CornerRadius" Value="60" />
         </Style>
         <Style x:Key="EntryStyle" TargetType="Entry">
             <Setter Property="FontSize" Value="60" />
@@ -18,6 +18,11 @@
             <Setter Property="WidthRequest" Value="150" />
             <Setter Property="HorizontalOptions" Value="Fill" />
             <Setter Property="Keyboard" Value="{x:Static Keyboard.Numeric}" />
+        </Style>
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
         </Style>
     </ContentPage.Resources>
     <ScrollView>
@@ -31,30 +36,29 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <HorizontalStackLayout
-                Grid.Row="0"
-                Grid.ColumnSpan="3"
-                Spacing="20"
-                HorizontalOptions="Center">
-                <Entry x:Name="FirstEntry"
-                       TextChanged="InputEntry_OnTextChanged"
-                       toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference SecondEntry}"
-                       Style="{StaticResource EntryStyle}" />
-                <Label x:Name="OperationLabel" FontSize="60" VerticalTextAlignment="Center" />
-                <Entry x:Name="SecondEntry"
-                       TextChanged="InputEntry_OnTextChanged"
-                       toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference CalculateBtn}"
-                       Style="{StaticResource EntryStyle}" />
-                <Label x:Name="ResultLabel" Text="" FontSize="60" VerticalTextAlignment="Center" />
-            </HorizontalStackLayout>
+            <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelStyle}" Text="PIERWSZE" />
+            <Label Grid.Row="0" Grid.Column="2" Style="{StaticResource LabelStyle}" Text="DRUGIE" />
+            <Entry Grid.Row="1" Grid.Column="0" x:Name="FirstEntry"
+                   TextChanged="InputEntry_OnTextChanged"
+                   toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference SecondEntry}"
+                   Style="{StaticResource EntryStyle}" />
+            <Label Grid.Row="1" Grid.Column="1" x:Name="OperationLabel" FontSize="60" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            <Entry Grid.Row="1" Grid.Column="2" x:Name="SecondEntry"
+                   TextChanged="InputEntry_OnTextChanged"
+                   toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference CalculateBtn}"
+                   Style="{StaticResource EntryStyle}" />
+            <Label Grid.Row="1" Grid.Column="3" x:Name="ResultLabel" Text="" HorizontalTextAlignment="Center" FontSize="60"
+                   VerticalTextAlignment="Center" />
             <Button
-                Grid.Row="1"
+                Grid.Row="2"
                 Grid.Column="0"
                 x:Name="DivideBtn"
                 Text="÷"
@@ -62,7 +66,7 @@
                 SemanticProperties.Hint="Podziel"
                 Style="{StaticResource OperationButtonStyle}" />
             <Button
-                Grid.Row="2"
+                Grid.Row="3"
                 Grid.Column="0"
                 x:Name="MultiplyBtn"
                 Text="×"
@@ -70,7 +74,7 @@
                 SemanticProperties.Hint="Pomnóż"
                 Style="{StaticResource OperationButtonStyle}" />
             <Button
-                Grid.Row="1"
+                Grid.Row="2"
                 Grid.Column="1"
                 x:Name="SubtractBtn"
                 Text="−"
@@ -78,7 +82,7 @@
                 SemanticProperties.Hint="Odejmij"
                 Style="{StaticResource OperationButtonStyle}" />
             <Button
-                Grid.Row="2"
+                Grid.Row="3"
                 Grid.Column="1"
                 x:Name="AddBtn"
                 Text="+"
@@ -86,7 +90,7 @@
                 SemanticProperties.Hint="Dodaj"
                 Style="{StaticResource OperationButtonStyle}" />
             <Button
-                Grid.Row="1"
+                Grid.Row="2"
                 Grid.Column="2"
                 x:Name="CalculateBtn"
                 Text="="
@@ -95,7 +99,7 @@
                 SemanticProperties.Hint="Oblicz"
                 Style="{StaticResource OperationButtonStyle}" />
             <Button
-                Grid.Row="2"
+                Grid.Row="3"
                 Grid.Column="2"
                 x:Name="ClearBtn"
                 Text="AC"
